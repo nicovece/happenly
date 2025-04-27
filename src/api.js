@@ -1,6 +1,5 @@
 import mockData from './mock-data';
 
-
 /**
  *
  * @param {*} events:
@@ -14,7 +13,6 @@ export const extractLocations = (events) => {
   const locations = [...new Set(extractedLocations)];
   return locations;
 };
-
 
 /**
  *
