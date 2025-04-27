@@ -56,6 +56,22 @@ describe('<CitySearch /> component', () => {
     }
   });
 
+  test('handles input change when allLocations is undefined', async () => {
+    const user = userEvent.setup();
+    // Ensure allLocations prop is undefined 
+    CitySearchComponent.rerender(<CitySearch />);
+    
+    // Get the city textbox and type in it
+    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    await user.click(cityTextBox); // Make suggestions visible
+    await user.type(cityTextBox, 'Berlin');
+    
+    // Since allLocations is undefined, we expect only the "See all cities" item
+    const suggestionListItems = CitySearchComponent.queryAllByRole('listitem');
+    expect(suggestionListItems).toHaveLength(1);
+    expect(suggestionListItems[0].textContent).toBe('See all cities');
+  });
+
   test('renders the suggestion text in the textbox upon clicking on the suggestion', async () => {
     const user = userEvent.setup();
     const allEvents = await getEvents(); 
