@@ -1,68 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745769717550" clover="3.2.0">
-  <project timestamp="1745769717550" name="All files">
-    <metrics statements="36" coveredstatements="36" conditionals="20" coveredconditionals="20" methods="16" coveredmethods="16" elements="72" coveredelements="72" complexity="0" loc="36" ncloc="36" packages="2" files="7" classes="7"/>
+<coverage generated="1745924181481" clover="3.2.0">
+  <project timestamp="1745924181481" name="All files">
+    <metrics statements="19" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="8" coveredmethods="8" elements="29" coveredelements="28" complexity="0" loc="19" ncloc="19" packages="2" files="3" classes="3"/>
     <package name="src">
-      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
       <file name="App.jsx" path="/Users/nicovece/Documents/careerfoundry/happenly/src/App.jsx">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="3" type="stmt"/>
-      </file>
-      <file name="api.js" path="/Users/nicovece/Documents/careerfoundry/happenly/src/api.js">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="12" count="70" type="stmt"/>
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="21" count="3" type="stmt"/>
-        <line num="22" count="10" type="stmt"/>
-      </file>
-      <file name="mock-data.js" path="/Users/nicovece/Documents/careerfoundry/happenly/src/mock-data.js">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="3" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.components">
-      <metrics statements="28" coveredstatements="28" conditionals="20" coveredconditionals="20" methods="12" coveredmethods="12"/>
-      <file name="CitySearch.jsx" path="/Users/nicovece/Documents/careerfoundry/happenly/src/components/CitySearch.jsx">
-        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="35" type="stmt"/>
-        <line num="5" count="35" type="stmt"/>
-        <line num="6" count="35" type="stmt"/>
-        <line num="7" count="35" type="stmt"/>
-        <line num="8" count="18" type="stmt"/>
-        <line num="9" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="24" type="stmt"/>
-        <line num="14" count="18" type="stmt"/>
-        <line num="15" count="18" type="stmt"/>
-        <line num="17" count="35" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="22" count="35" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="35" count="12" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
       </file>
-      <file name="Event.jsx" path="/Users/nicovece/Documents/careerfoundry/happenly/src/components/Event.jsx">
-        <metrics statements="4" coveredstatements="4" conditionals="14" coveredconditionals="14" methods="2" coveredmethods="2"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="5" count="45" type="stmt"/>
-        <line num="7" count="45" type="stmt"/>
-        <line num="20" count="3" type="cond" truecount="2" falsecount="0"/>
-      </file>
-      <file name="EventList.jsx" path="/Users/nicovece/Documents/careerfoundry/happenly/src/components/EventList.jsx">
-        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="7" count="35" type="stmt"/>
-      </file>
-      <file name="NumberOfEvents.jsx" path="/Users/nicovece/Documents/careerfoundry/happenly/src/components/NumberOfEvents.jsx">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="10" type="stmt"/>
-        <line num="6" count="10" type="stmt"/>
+      <file name="api.js" path="/Users/nicovece/Documents/careerfoundry/happenly/src/api.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="140" type="stmt"/>
         <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <file name="EventList.jsx" path="/Users/nicovece/Documents/careerfoundry/happenly/src/components/EventList.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="7" count="32" type="stmt"/>
       </file>
     </package>
   </project>

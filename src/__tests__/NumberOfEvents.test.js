@@ -20,9 +20,9 @@ describe('<NumberOfEvents /> component', () => {
     render(<NumberOfEvents />);
     const inputElement = screen.getByRole('spinbutton');
     const user = userEvent.setup();
-    
+
     await user.type(inputElement, '{backspace}{backspace}10');
-    
+
     expect(inputElement).toHaveValue(10);
   });
 });
