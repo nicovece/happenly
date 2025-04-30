@@ -2,13 +2,17 @@ import React from 'react';
 import { render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
-import { getEvents, extractLocations } from '../api';
 import App from '../App';
+import { extractLocations, getEvents } from '../api';
 
 describe('<CitySearch /> component', () => {
   let CitySearchComponent;
+  let allLocations;
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch />);
+    allLocations = [];
+    CitySearchComponent = render(
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
+    );
   });
 
   test('renders text input', () => {
@@ -35,7 +39,9 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
+    );
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, 'Berlin');
@@ -56,7 +62,9 @@ describe('<CitySearch /> component', () => {
 
   test('handles input change when allLocations is undefined', async () => {
     const user = userEvent.setup();
-    CitySearchComponent.rerender(<CitySearch />);
+    CitySearchComponent.rerender(
+      <CitySearch allLocations={[]} setCurrentCity={() => {}} />
+    );
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.click(cityTextBox);
@@ -71,7 +79,10 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+
+    CitySearchComponent.rerender(
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
+    );
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, 'Berlin');
