@@ -23,7 +23,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
   };
 
   useEffect(() => {
-    setSuggestions(allLocations);
+    setSuggestions(allLocations || []);
   }, [`${allLocations}`]);
 
   return (

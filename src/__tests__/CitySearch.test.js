@@ -63,11 +63,10 @@ describe('<CitySearch /> component', () => {
   test('handles input change when allLocations is undefined', async () => {
     const user = userEvent.setup();
     CitySearchComponent.rerender(
-      <CitySearch allLocations={[]} setCurrentCity={() => {}} />
+      <CitySearch allLocations={undefined} setCurrentCity={() => {}} />
     );
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
-    await user.click(cityTextBox);
     await user.type(cityTextBox, 'Berlin');
 
     const suggestionListItems = CitySearchComponent.queryAllByRole('listitem');
@@ -92,6 +91,23 @@ describe('<CitySearch /> component', () => {
     await user.click(BerlinGermanySuggestion);
 
     expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
+  });
+
+  test('shows only "See all cities" suggestion when typing a non-existent city', async () => {
+    const user = userEvent.setup();
+    const allEvents = await getEvents();
+    const allLocations = extractLocations(allEvents);
+
+    CitySearchComponent.rerender(
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
+    );
+
+    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    await user.type(cityTextBox, 'Paris, France');
+
+    const suggestionListItems = CitySearchComponent.queryAllByRole('listitem');
+    expect(suggestionListItems).toHaveLength(1);
+    expect(suggestionListItems[0].textContent).toBe('See all cities');
   });
 });
 
