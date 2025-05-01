@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const NumberOfEvents = () => {
-  const [numEvents, setNumEvents] = useState(32);
+const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
+  const handleInputChanged = event => {
+    let value = parseInt(event.target.value);
+    if (isNaN(value)) {
+      value = 0;
+    }
+    setCurrentNOE(value);
+  };
 
   return (
     <div id="number__of__events">
@@ -9,8 +15,9 @@ const NumberOfEvents = () => {
       <input
         id="number-input"
         type="number"
-        value={numEvents}
-        onChange={e => setNumEvents(parseInt(e.target.value))}
+        min="0"
+        value={currentNOE}
+        onChange={handleInputChanged}
         className="number-input"
       />
     </div>
