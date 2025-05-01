@@ -1,0 +1,14 @@
+:root {
+  --primary-color: #807ce4;
+  --primary-color-dark: #33325b;
+  --secondary-color: #4c9e6f;
+  --tertiary-color: #ee7a49;
+  --quaternary-color: #efefef;
+  --background-color: #24232b;
+  --text-color: --quaternary-color;
+  --text-dark-color: #24232b;
+  --accent-color: --tertiary-color;
+}
+
+@import url(https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.0.8/reseter.min.css);
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);

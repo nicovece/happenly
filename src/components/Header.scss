@@ -1,0 +1,70 @@
+@import url(../Settings.scss);
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.header {
+  // background-color: var(--background-color);
+  background-color: var(--primary-color-dark);
+  // border-bottom: 1px solid var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header h1 {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.header pre {
+  margin: 0 0 1rem 0;
+  font-size: 0.5rem;
+  line-height: 1.2;
+  color: var(--text-color);
+  background: transparent;
+  border: none;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-menu,
+.nav-menu a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #007bff;
+}

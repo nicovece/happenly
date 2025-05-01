@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Header from './components/Header';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import './App.scss';
 
 function App() {
   const [allLocations, setAllLocations] = useState([]);
@@ -27,8 +29,14 @@ function App() {
 
   return (
     <div className="App">
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} />
+      <Header />
+      <div className="search-container">
+        <CitySearch
+          allLocations={allLocations}
+          setCurrentCity={setCurrentCity}
+        />
+        <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} />
+      </div>
       <EventList events={events} />
     </div>
   );
