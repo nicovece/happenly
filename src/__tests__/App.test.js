@@ -1,13 +1,19 @@
 import React from 'react';
-import { render, within } from '@testing-library/react';
+import { render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
 
 describe('<App /> component', () => {
   let AppDOM;
-  beforeEach(() => {
-    AppDOM = render(<App />).container.firstChild;
+  beforeEach(async () => {
+    // Wait for the initial render and effect to complete
+    const { container } = render(<App />);
+    AppDOM = container.firstChild;
+    await waitFor(() => {
+      // Wait for the event list to be present
+      expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
+    });
   });
 
   test('renders list of events', () => {
@@ -29,18 +35,31 @@ describe('<App /> integration', () => {
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
 
+    // Wait for the city search to be present
+    await waitFor(() => {
+      expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
+    });
+
     const CitySearchDOM = AppDOM.querySelector('#city-search');
     const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
 
     await user.type(cityTextBox, 'Berlin');
-    const berlinSuggestionItem =
-      within(CitySearchDOM).queryByText('Berlin, Germany');
+    // Wait for the suggestion to appear
+    const berlinSuggestionItem = await waitFor(() =>
+      within(CitySearchDOM).queryByText('Berlin, Germany')
+    );
     await user.click(berlinSuggestionItem);
 
+    // Wait for the event list to update
     const EventListDOM = AppDOM.querySelector('#event-list');
+    await waitFor(() => {
+      const allRenderedEventItems =
+        within(EventListDOM).queryAllByRole('listitem');
+      expect(allRenderedEventItems.length).toBeGreaterThan(0);
+    });
+
     const allRenderedEventItems =
       within(EventListDOM).queryAllByRole('listitem');
-
     const allEvents = await getEvents();
     const berlinEvents = allEvents.filter(
       event => event.location === 'Berlin, Germany'
