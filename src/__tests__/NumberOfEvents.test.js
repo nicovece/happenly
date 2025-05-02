@@ -29,8 +29,9 @@ describe('<NumberOfEvents /> component', () => {
 
     // Directly set the input value to 10
     fireEvent.change(inputElement, { target: { value: '10' } });
-
-    expect(setCurrentNOE).toHaveBeenCalledWith(10);
+    await waitFor(() => {
+      expect(setCurrentNOE).toHaveBeenCalledWith(10);
+    });
   });
 
   test('sets value to 0 when input is empty or invalid', async () => {
@@ -40,11 +41,15 @@ describe('<NumberOfEvents /> component', () => {
 
     // Test empty input
     fireEvent.change(inputElement, { target: { value: '' } });
-    expect(setCurrentNOE).toHaveBeenCalledWith(0);
+    await waitFor(() => {
+      expect(setCurrentNOE).toHaveBeenCalledWith(0);
+    });
 
     // Test invalid input
     fireEvent.change(inputElement, { target: { value: 'abc' } });
-    expect(setCurrentNOE).toHaveBeenCalledWith(0);
+    await waitFor(() => {
+      expect(setCurrentNOE).toHaveBeenCalledWith(0);
+    });
   });
 });
 
