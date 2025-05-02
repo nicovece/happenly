@@ -19,6 +19,9 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  &:sticky {
+    opacity: 0.5;
+  }
 }
 
 .header-content {
@@ -42,7 +45,7 @@
   margin: 0 0 1rem 0;
   font-size: 0.5rem;
   line-height: 1.2;
-  color: var(--text-color);
+  color: var(--lightest-color);
   background: transparent;
   border: none;
   overflow-x: auto;

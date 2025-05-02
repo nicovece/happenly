@@ -4,6 +4,7 @@ import Header from './components/Header';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
+import Footer from './components/Footer';
 import { getEvents, extractLocations } from './api';
 import './App.scss';
 
@@ -38,6 +39,7 @@ function App() {
         <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} />
       </div>
       <EventList events={events} />
+      <Footer />
     </div>
   );
 }
