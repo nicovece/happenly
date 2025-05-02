@@ -28,10 +28,16 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
 
   return (
     <div id="city-search">
-      <label htmlFor="city-search">Discover what’s happening!</label>
+      <h1 className="page__title">
+        <strong className="accent">Happenly</strong>. Discover what’s happening!
+      </h1>
+      <label className="visually-hidden" htmlFor="city">
+        Search for a city
+      </label>
       <input
         type="text"
         className="city"
+        id="city"
         placeholder="Search for a city"
         value={query}
         onFocus={() => setShowSuggestions(true)}

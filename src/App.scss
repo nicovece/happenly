@@ -16,6 +16,7 @@ body {
 .App > *:not(header) {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 1.5rem;
 }
 
 ul {
@@ -45,10 +46,11 @@ input[type='number'] {
 }
 
 .city {
-  padding: 0.75em 1em;
+  width: 100%;
+  padding: 0.5em 0.75em;
   border-radius: 8px;
   outline: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   align-self: center;
   &:focus,
   &:not(:placeholder-shown) {
@@ -61,30 +63,51 @@ input[type='number'] {
   }
 }
 
+.page__title {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
 #city-search,
 #number__of__events {
-  width: max-content;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: auto;
+  gap: 1rem;
+  margin: 6vh auto;
   position: relative;
   label {
     color: var(--primary-color);
   }
+  .accent {
+    color: var(--lightest-color);
+  }
+  @media (min-width: 768px) {
+    width: max-content;
+    min-width: 36rem;
+  }
 }
 
 #city-search {
-  label {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
+  margin: 4rem auto 2rem auto;
+  @media (min-width: 768px) {
+    margin: 6rem auto 4rem auto;
   }
 }
 
 #number__of__events {
-  flex-direction: row;
   gap: 1em;
   margin-top: 3rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .suggestions {
@@ -94,7 +117,7 @@ input[type='number'] {
   z-index: 2;
   align-self: center;
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-top: 2px solid var(--primary-color-dark);
 }
 
@@ -166,6 +189,7 @@ input[type='number'] {
   display: flex;
   justify-content: flex-end;
   align-self: end;
+  margin: 2rem 0 1rem 0;
 }
 .details-btn {
   display: flex;
@@ -186,6 +210,9 @@ input[type='number'] {
     line-height: 0;
     padding-left: 0.5em;
     transition: all 0.3s ease;
+  }
+  &:focus {
+    outline-color: var(--text-color);
   }
 }
 
