@@ -1,4 +1,8 @@
+import React from 'react';
+import { render, waitFor, within } from '@testing-library/react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
+import App from '../App';
+import { getEvents } from '../api';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
@@ -8,11 +12,23 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
+    let AppComponent;
+
     given('user hasn’t searched for any city', () => {});
 
-    when('the user opens the app', () => {});
+    when('the user opens the app', () => {
+      AppComponent = render(<App />);
+    });
 
-    then('the user should see the list of all upcoming events.', () => {});
+    then('the user should see the list of all upcoming events', async () => {
+      const AppDOM = AppComponent.container.firstChild;
+      const EventListDOM = AppDOM.querySelector('#event-list');
+
+      await waitFor(() => {
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      });
+    });
   });
 
   test('User should see a list of suggestions when they search for a city', ({
