@@ -66,6 +66,24 @@ In order to control how much information I see at a glance
 As an event attendee
 I want to show or hide details for each event
 
+#### Scenario: Event element details box is collapsed by default
+
+    - **Given** the app is launched
+    - **When** the main page is loaded
+    - **Then** the event details is hidden
+
+#### Scenario: User can expand and show the event element details box
+
+    - **Given** the main page is open
+    - **When** the user clicks on an event show details button
+    - **Then** the event details is shown
+
+#### Scenario: User can collapse and hide the event element details box
+
+    - **Given** the main page is open
+    - **When** the user clicks on an event hide details button
+    - **Then** the event details is hidden
+
 #### Scenario: Persist expanded state across navigation
 
     - **Given** I have expanded details for the "JavaScript Conference"
