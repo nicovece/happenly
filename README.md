@@ -74,15 +74,19 @@ I want to show or hide details for each event
 
 #### Scenario: User can expand and show the event element details box
 
-    - **Given** the main page is open
+    - **Given** the main page is loaded
+    - **And** events list is loaded
+    - **And** the event details box is hidden
     - **When** the user clicks on an event show details button
-    - **Then** the event details is shown
+    - **Then** the event details box is shown
 
 #### Scenario: User can collapse and hide the event element details box
 
-    - **Given** the main page is open
+    - **Given** the main page is loaded
+    - **And** events list is loaded
+    - **And** the event details box is shown
     - **When** the user clicks on an event hide details button
-    - **Then** the event details is hidden
+    - **Then** the event details box is hidden
 
 #### Scenario: Persist expanded state across navigation
 
@@ -112,6 +116,20 @@ In order to focus on the most relevant events
 As an event attendee
 I want to set how many upcoming events are displayed
 
+#### Scenario: Display the default number (32) of events unless otherwise specified
+
+    - **Given** the main page is loaded
+    - **And** the events list is loaded
+    - **Then** the default number of events (e.g., 32) is applied
+    - **And** exactly that many events are shown (or fewer if less are available)
+
+#### Scenario: User can set the number of events to be displayed
+
+    - **Given** the main page is loaded
+    - **And** the list of events is loaded
+    - **When** the user sets the number of events to display using the input field
+    - **Then** that number of events is displayed
+
 #### Scenario: Invalid number input shows error
 
     - **Given** I am on the Events List screen
@@ -124,12 +142,6 @@ I want to set how many upcoming events are displayed
     - **When** I set the number of events to "10"
     - **Then** I see only 5 events
     - **And** a note "Showing all 5 available events"
-
-#### Scenario: Default number of events on first load
-
-    - **Given** I open the Events List screen for the first time
-    - **Then** the default number of events (e.g., 20) is applied
-    - **And** exactly that many events are shown (or fewer if less are available)
 
 ### Feature: Use the App When Offline
 

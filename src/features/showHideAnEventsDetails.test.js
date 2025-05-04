@@ -44,7 +44,7 @@ defineFeature(feature, test => {
       AppComponent = render(<App />);
     });
 
-    and('events list is loaded', async () => {
+    and('the events list is loaded', async () => {
       waitFor(() => {
         const eventList = AppComponent.container.querySelector('#event-list');
         expect(eventList).toBeInTheDocument();

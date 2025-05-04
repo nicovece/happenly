@@ -7,7 +7,7 @@ Feature: Show/hide an event details
 
   Scenario: User can expand and show the event element details box
     Given the main page is loaded
-    And events list is loaded
+    And the events list is loaded
     And the event details box is hidden
     When the user clicks on an event show details button
     Then the event details box is shown
