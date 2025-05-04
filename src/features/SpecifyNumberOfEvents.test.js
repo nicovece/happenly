@@ -1,9 +1,8 @@
 import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
-import { screen } from '@testing-library/dom';
 
 const feature = loadFeature('./src/features/SpecifyNumberOfEvents.feature');
 
@@ -19,14 +18,14 @@ defineFeature(feature, test => {
     });
 
     when('the events list is loaded', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventList = AppComponent.container.querySelector('#event-list');
         expect(eventList).toBeInTheDocument();
       });
     });
 
     then('the default number of events is applied', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventItems = screen.getAllByRole('listitem');
         expect(eventItems.length).toBe(32);
       });
@@ -45,7 +44,7 @@ defineFeature(feature, test => {
     });
 
     and('the events list is loaded', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventList = AppComponent.container.querySelector('#event-list');
         expect(eventList).toBeInTheDocument();
       });
@@ -60,7 +59,7 @@ defineFeature(feature, test => {
     );
 
     then('that number of events is displayed', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventItems = screen.getAllByRole('listitem');
         expect(eventItems.length).toBe(10);
       });

@@ -17,15 +17,15 @@ defineFeature(feature, test => {
       AppComponent = render(<App />);
     });
 
-    when('the main page is loaded', () => {
-      waitFor(() => {
+    when('the main page is loaded', async () => {
+      await waitFor(() => {
         const eventList = AppComponent.container.querySelector('#event-list');
         expect(eventList).toBeInTheDocument();
       });
     });
 
-    then('the event details box is hidden', () => {
-      waitFor(() => {
+    then('the event details box is hidden', async () => {
+      await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
         expect(eventDetails).toBeNull();
@@ -45,14 +45,14 @@ defineFeature(feature, test => {
     });
 
     and('the events list is loaded', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventList = AppComponent.container.querySelector('#event-list');
         expect(eventList).toBeInTheDocument();
       });
     });
 
     and('the event details box is hidden', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
         expect(eventDetails).toBeNull();
@@ -67,7 +67,7 @@ defineFeature(feature, test => {
     });
 
     then('the event details box is shown', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
         expect(eventDetails).toBeInTheDocument();
@@ -87,14 +87,14 @@ defineFeature(feature, test => {
     });
 
     and('events list is loaded', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventList = AppComponent.container.querySelector('#event-list');
         expect(eventList).toBeInTheDocument();
       });
     });
 
     and('the event details box is shown', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
         expect(eventDetails).toBeInTheDocument();
@@ -109,7 +109,7 @@ defineFeature(feature, test => {
     });
 
     then('the event details box is hidden', async () => {
-      waitFor(() => {
+      await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
         expect(eventDetails).toBeNull();
