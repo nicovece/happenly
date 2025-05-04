@@ -14,6 +14,26 @@ In order to find events in my preferred location
 As an event attendee
 I want to filter the event list by city
 
+#### Scenario: When user hasn’t searched for a city, show upcoming events from all cities
+
+    - **Given** user hasn’t searched for any city
+    - **When** the user opens the app
+    - **Then** the user should see a list of all upcoming events
+
+#### Scenario: User should see a list of suggestions when they search for a city
+
+    - **Given** the main page is open
+    - **When** user starts typing in the city textbox
+    - **Then** the user should receive a list of cities (suggestions) that match what they’ve typed
+
+#### Scenario: User can select a city from the suggested list
+
+    - **Given** user was typing “Berlin” in the city textbox
+    - **And** the list of suggested cities is showing
+    - **When** the user selects a city (e.g., “Berlin, Germany”) from the list
+    - **Then** their city should be changed to that city (i.e., “Berlin, Germany”)
+    - **And** the user should receive a list of upcoming events in that city
+
 #### Scenario: Filter by a city with no events
 
     - **Given** I am on the Events List screen
@@ -46,6 +66,28 @@ In order to control how much information I see at a glance
 As an event attendee
 I want to show or hide details for each event
 
+#### Scenario: Event element details box is collapsed by default
+
+    - **Given** the app is launched
+    - **When** the main page is loaded
+    - **Then** the event details is hidden
+
+#### Scenario: User can expand and show the event element details box
+
+    - **Given** the main page is loaded
+    - **And** events list is loaded
+    - **And** the event details box is hidden
+    - **When** the user clicks on an event show details button
+    - **Then** the event details box is shown
+
+#### Scenario: User can collapse and hide the event element details box
+
+    - **Given** the main page is loaded
+    - **And** events list is loaded
+    - **And** the event details box is shown
+    - **When** the user clicks on an event hide details button
+    - **Then** the event details box is hidden
+
 #### Scenario: Persist expanded state across navigation
 
     - **Given** I have expanded details for the "JavaScript Conference"
@@ -74,6 +116,20 @@ In order to focus on the most relevant events
 As an event attendee
 I want to set how many upcoming events are displayed
 
+#### Scenario: Display the default number (32) of events unless otherwise specified
+
+    - **Given** the main page is loaded
+    - **And** the events list is loaded
+    - **Then** the default number of events (e.g., 32) is applied
+    - **And** exactly that many events are shown (or fewer if less are available)
+
+#### Scenario: User can set the number of events to be displayed
+
+    - **Given** the main page is loaded
+    - **And** the list of events is loaded
+    - **When** the user sets the number of events to display using the input field
+    - **Then** that number of events is displayed
+
 #### Scenario: Invalid number input shows error
 
     - **Given** I am on the Events List screen
@@ -86,12 +142,6 @@ I want to set how many upcoming events are displayed
     - **When** I set the number of events to "10"
     - **Then** I see only 5 events
     - **And** a note "Showing all 5 available events"
-
-#### Scenario: Default number of events on first load
-
-    - **Given** I open the Events List screen for the first time
-    - **Then** the default number of events (e.g., 20) is applied
-    - **And** exactly that many events are shown (or fewer if less are available)
 
 ### Feature: Use the App When Offline
 
