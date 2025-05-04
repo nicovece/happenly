@@ -14,6 +14,7 @@
     "test:watchall": "jest --watchAll --coverage"
   },
   "dependencies": {
+    "atatus-spa": "^4.6.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
