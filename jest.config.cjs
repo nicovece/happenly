@@ -3,6 +3,7 @@ module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest', // Transform JavaScript and JSX files using Babel
   },
+
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Mock CSS imports
   },
