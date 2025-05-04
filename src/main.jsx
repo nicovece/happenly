@@ -4,7 +4,6 @@ import './index.css';
 import App from './App.jsx';
 import * as atatus from 'atatus-spa';
 atatus.config('2a57695fcbdb439089e1f7e59f12b0a4').install();
-atatus.notify(new Error('Test Atatus Setup'));
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
