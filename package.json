@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest",
+    "test:e2e": "node --experimental-vm-modules node_modules/.bin/jest src/__tests__/EndToEnd.test.js",
     "test:watch": "jest --watch --coverage",
     "test:watchall": "jest --watchAll --coverage"
   },
