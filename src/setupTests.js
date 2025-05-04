@@ -16,4 +16,8 @@ const ignoreMessage = MESSAGES_TO_IGNORE.find(message => >args.toString().includ
 if (!ignoreMessage) originalError(...args);
 }
 
+<<<<<<< HEAD
   jest.setTimeout(90000);
+=======
+jest.setTimeout(30000);
+>>>>>>> origin/4_6_ua_and_ete_test
