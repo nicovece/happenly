@@ -11,20 +11,38 @@ import App from '../App';
 
 describe('<NumberOfEvents /> component', () => {
   test('contains a number input element', () => {
-    render(<NumberOfEvents currentNOE={32} setCurrentNOE={() => {}} />);
+    render(
+      <NumberOfEvents
+        currentNOE={32}
+        setCurrentNOE={() => {}}
+        setErrorAlert={() => {}}
+      />
+    );
     const inputElement = screen.getByRole('spinbutton');
     expect(inputElement).toBeInTheDocument();
   });
 
   test('number input should have a default value of 32', () => {
-    render(<NumberOfEvents currentNOE={32} setCurrentNOE={() => {}} />);
+    render(
+      <NumberOfEvents
+        currentNOE={32}
+        setCurrentNOE={() => {}}
+        setErrorAlert={() => {}}
+      />
+    );
     const inputElement = screen.getByRole('spinbutton');
     expect(inputElement).toHaveValue(32);
   });
 
   test('value changes when user types in the input field', async () => {
     const setCurrentNOE = jest.fn();
-    render(<NumberOfEvents currentNOE={32} setCurrentNOE={setCurrentNOE} />);
+    render(
+      <NumberOfEvents
+        currentNOE={32}
+        setCurrentNOE={setCurrentNOE}
+        setErrorAlert={() => {}}
+      />
+    );
     const inputElement = screen.getByRole('spinbutton');
 
     // Directly set the input value to 10
@@ -36,7 +54,13 @@ describe('<NumberOfEvents /> component', () => {
 
   test('sets value to 0 when input is empty or invalid', async () => {
     const setCurrentNOE = jest.fn();
-    render(<NumberOfEvents currentNOE={32} setCurrentNOE={setCurrentNOE} />);
+    render(
+      <NumberOfEvents
+        currentNOE={32}
+        setCurrentNOE={setCurrentNOE}
+        setErrorAlert={() => {}}
+      />
+    );
     const inputElement = screen.getByRole('spinbutton');
 
     // Test empty input
