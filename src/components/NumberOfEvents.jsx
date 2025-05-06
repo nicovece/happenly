@@ -1,10 +1,15 @@
 import React from 'react';
 
-const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
+const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
   const handleInputChanged = event => {
     let value = parseInt(event.target.value);
     if (isNaN(value)) {
       value = 0;
+    }
+    if (value > 1000 || value < 1 || isNaN(value)) {
+      setErrorAlert('Only numbers between 1 and 1000 are allowed');
+    } else {
+      setErrorAlert('');
     }
     setCurrentNOE(value);
   };
