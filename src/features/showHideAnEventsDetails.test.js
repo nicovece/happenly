@@ -94,6 +94,13 @@ defineFeature(feature, test => {
     });
 
     and('the event details box is shown', async () => {
+      // First, click the show details button
+      const showDetailsButton = AppComponent.container.querySelector(
+        '.event.closed .details-btn'
+      );
+      userEvent.click(showDetailsButton);
+
+      // Now, wait for the details to appear
       await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
