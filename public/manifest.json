@@ -9,22 +9,36 @@
       "purpose": "maskable"
     },
     {
-      "src": "meet-app-144.png",
+      "src": "happenly-app-144.png",
       "type": "image/png",
       "sizes": "144x144",
       "purpose": "any"
     },
     {
-      "src": "meet-app-192.png",
+      "src": "happenly-app-192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "meet-app-512.png",
+      "src": "happenly-app-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "happenly-screenshot-wide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "happenly-screenshot-narrow.png",
+      "sizes": "1290x2796",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ],
   "start_url": ".",
