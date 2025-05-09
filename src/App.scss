@@ -80,6 +80,7 @@ input[type='number'] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin: 6vh auto;
   position: relative;
@@ -105,8 +106,15 @@ input[type='number'] {
 #number__of__events {
   gap: 1em;
   margin-top: 3rem;
-  @media (min-width: 768px) {
-    flex-direction: row;
+  flex-direction: row;
+  .alert {
+    order: 1;
+  }
+  label {
+    order: 2;
+  }
+  input {
+    order: 3;
   }
 }
 
@@ -216,14 +224,6 @@ input[type='number'] {
   }
 }
 
-.alerts-container {
-  position: fixed;
-  top: 0px;
-  left: 20px;
-  width: 250px;
-  z-index: 1000;
-}
-
 .charts-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -242,9 +242,25 @@ input[type='number'] {
 
 // Alerts
 .alerts-container {
-  position: fixed;
-  top: 0px;
-  left: 20px;
-  width: 250px;
-  z-index: 1000;
+  // position: fixed;
+  // top: 0px;
+  // left: 20px;
+  // width: 250px;
+  // z-index: 1000;
+  margin: 1rem auto -5rem auto;
+}
+.alert {
+  width: 100%;
+  .alert-text {
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.6em 1.4em;
+    border-width: 1px;
+    border-style: solid;
+    font-weight: bolder;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+  }
 }

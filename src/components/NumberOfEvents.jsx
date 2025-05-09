@@ -1,6 +1,7 @@
-import React from 'react';
-
-const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
+import React, { useState } from 'react';
+import { ErrorAlert } from './Alert';
+const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
+  const [errorAlert, setErrorAlert] = useState('');
   const handleInputChanged = event => {
     let value = parseInt(event.target.value);
     if (isNaN(value)) {
@@ -20,11 +21,13 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE, setErrorAlert }) => {
       <input
         id="number-input"
         type="number"
-        min="0"
+        min="1"
+        max="1000"
         value={currentNOE}
         onChange={handleInputChanged}
         className="number-input"
       />
+      {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
     </div>
   );
 };
