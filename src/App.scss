@@ -241,14 +241,11 @@ input[type='number'] {
 }
 
 // Alerts
-.alerts-container {
-  // position: fixed;
-  // top: 0px;
-  // left: 20px;
-  // width: 250px;
-  // z-index: 1000;
-  margin: 1rem auto -5rem auto;
+.alerts-container,
+.App > *:not(header).alerts-container {
+  margin: 2rem auto -4rem;
 }
+
 .alert {
   width: 100%;
   .alert-text {
