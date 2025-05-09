@@ -6,6 +6,7 @@ import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import Footer from './components/Footer';
 import { WarningAlert } from './components/Alert';
+import CityEventsChart from './components/CityEventsChart';
 import { getEvents, extractLocations } from './api';
 import './App.scss';
 
@@ -57,6 +58,7 @@ function App() {
           // setErrorAlert={setErrorAlert}
         />
       </div>
+      <CityEventsChart allLocations={allLocations} events={events} />
       <EventList events={events} />
       <Footer />
     </div>
