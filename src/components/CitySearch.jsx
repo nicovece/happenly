@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { InfoAlert } from './Alert';
 
-const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-
+  const [infoAlert, setInfoAlert] = useState('');
   const handleInputChanged = event => {
     const value = event.target.value;
     const filteredLocations = allLocations
@@ -45,6 +46,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       <label className="visually-hidden" htmlFor="city">
         Search for a city
       </label>
+      {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
       <input
         type="text"
         className="city"

@@ -5,7 +5,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import Footer from './components/Footer';
-import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
+import { WarningAlert } from './components/Alert';
 import { getEvents, extractLocations } from './api';
 import './App.scss';
 
@@ -14,8 +14,8 @@ function App() {
   const [currentNOE, setCurrentNOE] = useState(32);
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
-  const [infoAlert, setInfoAlert] = useState('');
-  const [errorAlert, setErrorAlert] = useState('');
+  // const [infoAlert, setInfoAlert] = useState('');
+  // const [errorAlert, setErrorAlert] = useState('');
   const [warningAlert, setWarningAlert] = useState('');
 
   useEffect(() => {
@@ -41,20 +41,20 @@ function App() {
     <div className="App">
       <Header />
       <div className="alerts-container">
-        {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
-        {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        {/* {infoAlert.length ? <InfoAlert text={infoAlert} /> : null} */}
+        {/* {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null} */}
         {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
       <div className="search-container">
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
-          setInfoAlert={setInfoAlert}
+          //setInfoAlert={setInfoAlert}
         />
         <NumberOfEvents
           currentNOE={currentNOE}
           setCurrentNOE={setCurrentNOE}
-          setErrorAlert={setErrorAlert}
+          // setErrorAlert={setErrorAlert}
         />
       </div>
       <EventList events={events} />
