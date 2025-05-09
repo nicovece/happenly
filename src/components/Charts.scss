@@ -1,0 +1,22 @@
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--primary-color);
+  opacity: 0.4;
+}
+.recharts-layer.recharts-cartesian-axis {
+  > line {
+    stroke: var(--primary-color-mid);
+    opacity: 1;
+  }
+}
+.recharts-layer.recharts-cartesian-axis-tick {
+  text {
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--primary-color);
+  }
+  line {
+    stroke: var(--primary-color);
+    opacity: 0.4;
+  }
+}

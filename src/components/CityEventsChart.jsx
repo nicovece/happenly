@@ -7,7 +7,9 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  ZAxis,
 } from 'recharts';
+import './Charts.scss';
 
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
@@ -34,7 +36,12 @@ const CityEventsChart = ({ allLocations, events }) => {
           left: -30,
         }}
       >
-        <CartesianGrid />
+        <CartesianGrid
+          // fill="#33325b"
+          // fillOpacity={0.3}
+          strokeDasharray="4 4"
+          opacity={0.5}
+        />
         <XAxis
           type="category"
           dataKey="city"
@@ -44,8 +51,9 @@ const CityEventsChart = ({ allLocations, events }) => {
           tick={{ dx: 20, dy: 40, fontSize: 14 }}
         />
         <YAxis type="number" dataKey="count" name="Number of events" />
+        <ZAxis range={[80, 81]} />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-        <Scatter name="A school" data={data} fill="#8884d8" />
+        <Scatter name="A school" data={data} fill="#807ce4" shape="circle" />
       </ScatterChart>
     </ResponsiveContainer>
   );
