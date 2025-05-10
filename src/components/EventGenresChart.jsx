@@ -46,9 +46,27 @@ const EventGenresChart = ({ events }) => {
     ) : null;
   };
 
+  const renderLegend = props => {
+    const { payload } = props;
+
+    return (
+      <ul className="genres-pie-chart__legend">
+        {payload.map((entry, index) => (
+          <li
+            className="genres-pie-chart__legend-item"
+            key={`item-${index}`}
+            style={{ '--icon-color': entry.color }}
+          >
+            {entry.value}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <ResponsiveContainer width="99%" height={400}>
-      <PieChart>
+      <PieChart className="genres-pie-chart">
         <Pie
           data={data}
           dataKey="value"
@@ -66,6 +84,8 @@ const EventGenresChart = ({ events }) => {
             />
           ))}
         </Pie>
+        <Legend content={renderLegend} />
+        {/* <Legend verticalAlign="bottom" /> */}
       </PieChart>
     </ResponsiveContainer>
   );

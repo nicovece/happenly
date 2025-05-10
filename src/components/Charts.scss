@@ -1,22 +1,62 @@
-.recharts-cartesian-grid-horizontal line,
-.recharts-cartesian-grid-vertical line {
-  stroke: var(--primary-color);
-  opacity: 0.4;
-}
-.recharts-layer.recharts-cartesian-axis {
-  > line {
-    stroke: var(--primary-color-mid);
-    opacity: 1;
-  }
-}
-.recharts-layer.recharts-cartesian-axis-tick {
-  text {
-    font-size: 12px;
-    font-weight: 600;
-    fill: var(--primary-color);
-  }
-  line {
+.city-events-chart {
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
     stroke: var(--primary-color);
     opacity: 0.4;
+  }
+  .recharts-layer.recharts-cartesian-axis {
+    > line {
+      stroke: var(--primary-color-mid);
+      opacity: 1;
+    }
+  }
+  .recharts-layer.recharts-cartesian-axis-tick {
+    text {
+      font-size: 12px;
+      font-weight: 600;
+      fill: var(--primary-color);
+    }
+    line {
+      stroke: var(--primary-color);
+      opacity: 0.4;
+    }
+  }
+}
+
+.genres-pie-chart {
+  .genres-pie-chart__legend {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 0;
+    transform: translateY(1rem);
+    .genres-pie-chart__legend-item {
+      width: calc(100% / 3 - 1rem);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      line-height: 1.4;
+      color: var(--icon-color);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--icon-color);
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .genres-pie-chart__legend {
+      width: 100%;
+      justify-content: center;
+      transform: translateY(0);
+      .genres-pie-chart__legend-item {
+        width: min-content;
+      }
+    }
   }
 }

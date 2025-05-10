@@ -224,20 +224,23 @@ input[type='number'] {
   }
 }
 
+// Charts
+
 .charts-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 16vh;
+  @media (min-width: 768px) {
+    gap: 6rem;
+  }
+  @media (min-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
 }
 
 .details {
   margin: 1rem 0;
-}
-
-@media (max-width: 768px) {
-  .charts-container {
-    grid-template-columns: 1fr;
-  }
 }
 
 // Alerts
