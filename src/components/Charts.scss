@@ -24,8 +24,10 @@
 }
 
 .genres-pie-chart {
+  transform: translateY(-1rem);
   .genres-pie-chart__legend {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
     margin: 0;
@@ -33,6 +35,7 @@
     .genres-pie-chart__legend-item {
       width: calc(100% / 3 - 1rem);
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 0.25rem;
       line-height: 1.4;
@@ -49,13 +52,15 @@
       }
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: 590px) {
+    transform: translateY(-3rem);
     .genres-pie-chart__legend {
       width: 100%;
-      justify-content: center;
+      gap: 2rem;
       transform: translateY(0);
       .genres-pie-chart__legend-item {
         width: min-content;
+        justify-content: flex-start;
       }
     }
   }

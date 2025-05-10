@@ -229,10 +229,7 @@ input[type='number'] {
 .charts-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16vh;
-  @media (min-width: 768px) {
-    gap: 6rem;
-  }
+  gap: 6rem;
   @media (min-width: 1000px) {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
