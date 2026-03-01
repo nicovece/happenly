@@ -1,6 +1,6 @@
-// src/mock-data.js
+import { CalendarEvent } from './types';
 
-const mockData = [
+const mockData: CalendarEvent[] = [
   {
     kind: 'calendar#event',
     etag: '"3181161784712000"',
