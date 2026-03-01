@@ -1,21 +1,15 @@
 import React from 'react';
-import { render, within, waitFor } from '@testing-library/react';
+import { render, within, waitFor, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 import App from '../App';
 import { extractLocations, getEvents } from '../api';
 
 describe('<CitySearch /> component', () => {
-  let CitySearchComponent;
-  let allLocations;
+  let CitySearchComponent: RenderResult;
   beforeEach(() => {
-    allLocations = [];
     CitySearchComponent = render(
-      <CitySearch
-        allLocations={allLocations}
-        setCurrentCity={() => {}}
-        setInfoAlert={() => {}}
-      />
+      <CitySearch allLocations={[]} setCurrentCity={() => {}} />
     );
   });
 
@@ -32,7 +26,7 @@ describe('<CitySearch /> component', () => {
 
   test('renders a list of suggestions when city textbox gains focus', async () => {
     const user = userEvent.setup();
-    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    const cityTextBox = CitySearchComponent.queryByRole('textbox')!;
     await user.click(cityTextBox);
     await waitFor(() => {
       const suggestionList = CitySearchComponent.queryByRole('list');
@@ -46,14 +40,12 @@ describe('<CitySearch /> component', () => {
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
     CitySearchComponent.rerender(
-      <CitySearch
-        allLocations={allLocations}
-        setCurrentCity={() => {}}
-        setInfoAlert={() => {}}
-      />
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
     );
 
-    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    const cityTextBox = CitySearchComponent.queryByRole(
+      'textbox'
+    ) as HTMLInputElement;
     await user.type(cityTextBox, 'Berlin');
 
     await waitFor(() => {
@@ -73,17 +65,13 @@ describe('<CitySearch /> component', () => {
     });
   });
 
-  test('handles input change when allLocations is undefined', async () => {
+  test('handles input change when allLocations is empty', async () => {
     const user = userEvent.setup();
     CitySearchComponent.rerender(
-      <CitySearch
-        allLocations={undefined}
-        setCurrentCity={() => {}}
-        setInfoAlert={() => {}}
-      />
+      <CitySearch allLocations={[]} setCurrentCity={() => {}} />
     );
 
-    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    const cityTextBox = CitySearchComponent.queryByRole('textbox')!;
     await user.type(cityTextBox, 'Berlin');
 
     await waitFor(() => {
@@ -100,14 +88,10 @@ describe('<CitySearch /> component', () => {
     const allLocations = extractLocations(allEvents);
 
     CitySearchComponent.rerender(
-      <CitySearch
-        allLocations={allLocations}
-        setCurrentCity={() => {}}
-        setInfoAlert={() => {}}
-      />
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
     );
 
-    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    const cityTextBox = CitySearchComponent.queryByRole('textbox')!;
     await user.type(cityTextBox, 'Berlin');
 
     await waitFor(() => {
@@ -128,14 +112,10 @@ describe('<CitySearch /> component', () => {
     const allLocations = extractLocations(allEvents);
 
     CitySearchComponent.rerender(
-      <CitySearch
-        allLocations={allLocations}
-        setCurrentCity={() => {}}
-        setInfoAlert={() => {}}
-      />
+      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
     );
 
-    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    const cityTextBox = CitySearchComponent.queryByRole('textbox')!;
     await user.type(cityTextBox, 'Paris, France');
 
     await waitFor(() => {
@@ -151,10 +131,10 @@ describe('<CitySearch /> integration', () => {
   test('renders suggestions list when the app is rendered.', async () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
+    const AppDOM = AppComponent.container.firstChild as HTMLElement;
 
-    const CitySearchDOM = AppDOM.querySelector('#city-search');
-    const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
+    const CitySearchDOM = AppDOM.querySelector('#city-search') as HTMLElement;
+    const cityTextBox = within(CitySearchDOM).queryByRole('textbox')!;
     await user.click(cityTextBox);
 
     const allEvents = await getEvents();

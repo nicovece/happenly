@@ -59,7 +59,7 @@ export interface EventProps {
 }
 
 export interface EventListProps {
-  events: CalendarEvent[];
+  events?: CalendarEvent[];
 }
 
 export interface CitySearchProps {

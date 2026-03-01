@@ -1,7 +1,3 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
 const MESSAGES_TO_IGNORE = [
@@ -12,7 +8,7 @@ const MESSAGES_TO_IGNORE = [
 
 const originalError = console.error.bind(console.error);
 
-console.error = (...args) => {
+console.error = (...args: unknown[]) => {
   const ignoreMessage = MESSAGES_TO_IGNORE.find(message =>
     args.toString().includes(message)
   );
@@ -24,7 +20,7 @@ jest.setTimeout(30000);
 const { ResizeObserver } = window;
 
 beforeEach(() => {
-  //@ts-ignore
+  // @ts-expect-error -- deleting ResizeObserver to replace with mock
   delete window.ResizeObserver;
   window.ResizeObserver = jest.fn().mockImplementation(() => ({
     observe: jest.fn(),

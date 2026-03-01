@@ -5,13 +5,11 @@ import { getEvents } from '../api';
 import App from '../App';
 
 describe('<App /> component', () => {
-  let AppDOM;
+  let AppDOM: HTMLElement;
   beforeEach(async () => {
-    // Wait for the initial render and effect to complete
     const { container } = render(<App />);
-    AppDOM = container.firstChild;
+    AppDOM = container.firstChild as HTMLElement;
     await waitFor(() => {
-      // Wait for the event list to be present
       expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
     });
   });
@@ -33,25 +31,22 @@ describe('<App /> integration', () => {
   test('renders a list of events matching the city selected by the user', async () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
+    const AppDOM = AppComponent.container.firstChild as HTMLElement;
 
-    // Wait for the city search to be present
     await waitFor(() => {
       expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
     });
 
-    const CitySearchDOM = AppDOM.querySelector('#city-search');
-    const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
+    const CitySearchDOM = AppDOM.querySelector('#city-search') as HTMLElement;
+    const cityTextBox = within(CitySearchDOM).queryByRole('textbox')!;
 
     await user.type(cityTextBox, 'Berlin');
-    // Wait for the suggestion to appear
     const berlinSuggestionItem = await waitFor(() =>
       within(CitySearchDOM).queryByText('Berlin, Germany')
     );
-    await user.click(berlinSuggestionItem);
+    await user.click(berlinSuggestionItem!);
 
-    // Wait for the event list to update
-    const EventListDOM = AppDOM.querySelector('#event-list');
+    const EventListDOM = AppDOM.querySelector('#event-list') as HTMLElement;
     await waitFor(() => {
       const allRenderedEventItems =
         within(EventListDOM).queryAllByRole('listitem');

@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import Event from '../components/Event';
+import { CalendarEvent } from '../types';
 
 describe('<Event /> component', () => {
-  let EventComponent;
-  let allEvents;
+  let EventComponent: RenderResult;
+  let allEvents: CalendarEvent[];
   beforeEach(async () => {
     allEvents = await getEvents();
     EventComponent = render(<Event event={allEvents[0]} />);
@@ -42,7 +43,7 @@ describe('<Event /> component', () => {
   test('event details are shown when button is clicked', async () => {
     const user = userEvent.setup();
     const detailsButton = EventComponent.queryByText('show details');
-    await user.click(detailsButton);
+    await user.click(detailsButton!);
     await waitFor(() => {
       expect(
         EventComponent.container.querySelector('.details')
@@ -57,8 +58,8 @@ describe('<Event /> component', () => {
   test('event details are hidden when button is clicked again', async () => {
     const user = userEvent.setup();
     const detailsButton = EventComponent.queryByText('show details');
-    await user.click(detailsButton);
-    await user.click(detailsButton);
+    await user.click(detailsButton!);
+    await user.click(detailsButton!);
     await waitFor(() => {
       expect(
         EventComponent.container.querySelector('.details')
