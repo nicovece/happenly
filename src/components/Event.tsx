@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { EventProps } from '../types';
 
-const Event: React.FC<EventProps> = ({ event }) => {
+const Event: FC<EventProps> = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (

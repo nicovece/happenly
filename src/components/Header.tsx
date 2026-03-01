@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import './Header.scss';
 
 const asciiArt = `
@@ -11,7 +11,7 @@ const asciiArt = `
             \\|   \\|                       \\| 
 `;
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   return (
     <header className="header">
       <div className="header-content">

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import { ErrorAlert } from './Alert';
 import { NumberOfEventsProps } from '../types';
 
-const NumberOfEvents: React.FC<NumberOfEventsProps> = ({
+const NumberOfEvents: FC<NumberOfEventsProps> = ({
   currentNOE,
   setCurrentNOE,
 }) => {
   const [errorAlert, setErrorAlert] = useState('');
-  const handleInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(event.target.value);
     if (isNaN(value)) {
       value = 0;

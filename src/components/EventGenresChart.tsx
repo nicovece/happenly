@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { CSSProperties, useState, useEffect } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from 'recharts';
+import type { Props as LegendProps } from 'recharts/types/component/DefaultLegendContent';
 import { EventGenresChartProps, GenreChartData } from '../types';
 
 const colors = ['#807ce4', '#9A96EA', '#B2B0EF', '#CCCBF4', '#E5E5FA'];
 
-const EventGenresChart: React.FC<EventGenresChartProps> = ({ events }) => {
+const EventGenresChart = ({ events }: EventGenresChartProps) => {
   const [data, setData] = useState<GenreChartData[]>([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
@@ -54,9 +55,7 @@ const EventGenresChart: React.FC<EventGenresChartProps> = ({ events }) => {
     ) : null;
   };
 
-  const renderLegend = (props: {
-    payload?: Array<{ color: string; value: string }>;
-  }) => {
+  const renderLegend = (props: LegendProps) => {
     const { payload } = props;
 
     return (
@@ -65,7 +64,7 @@ const EventGenresChart: React.FC<EventGenresChartProps> = ({ events }) => {
           <li
             className="genres-pie-chart__legend-item"
             key={`item-${index}`}
-            style={{ '--icon-color': entry.color } as React.CSSProperties}
+            style={{ '--icon-color': entry.color ?? '' } as CSSProperties}
           >
             {entry.value}
           </li>
@@ -85,7 +84,7 @@ const EventGenresChart: React.FC<EventGenresChartProps> = ({ events }) => {
           label={renderCustomizedLabel}
           outerRadius={130}
         >
-          {data.map((entry, index) => (
+          {data.map((_entry, index) => (
             <Cell
               key={`cell-${index}`}
               fill={colors[index % colors.length]}

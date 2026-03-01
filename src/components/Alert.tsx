@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import { Component, CSSProperties } from 'react';
 import { AlertProps } from '../types';
 
 class Alert extends Component<AlertProps> {
   protected color: string | null = null;
   protected bgColor: string | null = null;
 
-  getStyle = (): React.CSSProperties => {
+  getStyle = (): CSSProperties => {
     return {
       color: this.color ?? undefined,
       backgroundColor: this.bgColor ?? undefined,

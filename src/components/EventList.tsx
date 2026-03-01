@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 import Event from './Event';
 import { EventListProps } from '../types';
 
-const EventList: React.FC<EventListProps> = ({ events }) => {
+const EventList: FC<EventListProps> = ({ events }) => {
   return (
     <ul id="event-list">
       {events

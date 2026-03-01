@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import {
   ScatterChart,
   Scatter,
@@ -12,7 +12,7 @@ import {
 import { CityEventsChartProps, CityChartData } from '../types';
 import './Charts.scss';
 
-const CityEventsChart: React.FC<CityEventsChartProps> = ({
+const CityEventsChart: FC<CityEventsChartProps> = ({
   allLocations,
   events,
 }) => {

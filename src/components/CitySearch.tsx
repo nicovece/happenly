@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { InfoAlert } from './Alert';
 import { CitySearchProps } from '../types';
 
-const CitySearch: React.FC<CitySearchProps> = ({
+const CitySearch: FC<CitySearchProps> = ({
   allLocations,
   setCurrentCity,
 }) => {
@@ -11,7 +11,7 @@ const CitySearch: React.FC<CitySearchProps> = ({
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [infoAlert, setInfoAlert] = useState('');
 
-  const handleInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const filteredLocations = allLocations
       ? allLocations.filter(location => {
@@ -31,7 +31,7 @@ const CitySearch: React.FC<CitySearchProps> = ({
     setInfoAlert(infoText);
   };
 
-  const handleItemClicked = (event: React.MouseEvent<HTMLLIElement>) => {
+  const handleItemClicked = (event: MouseEvent<HTMLLIElement>) => {
     const value = (event.target as HTMLElement).textContent ?? '';
     setQuery(value);
     setShowSuggestions(false);
