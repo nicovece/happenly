@@ -11,7 +11,7 @@ const asciiArt = `
             \\|   \\|                       \\| 
 `;
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header-content">

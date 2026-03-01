@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from 'recharts';
+import { EventGenresChartProps, GenreChartData } from '../types';
 
 const colors = ['#807ce4', '#9A96EA', '#B2B0EF', '#CCCBF4', '#E5E5FA'];
 
-const EventGenresChart = ({ events }) => {
-  const [data, setData] = useState([]);
+const EventGenresChart: React.FC<EventGenresChartProps> = ({ events }) => {
+  const [data, setData] = useState<GenreChartData[]>([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
-  const getData = () => {
+  const getData = (): GenreChartData[] => {
     const data = genres.map(genre => {
       const filteredEvents = events.filter(event =>
         event.summary.includes(genre)
@@ -28,6 +29,13 @@ const EventGenresChart = ({ events }) => {
     outerRadius,
     percent,
     index,
+  }: {
+    cx: number;
+    cy: number;
+    midAngle: number;
+    outerRadius: number;
+    percent: number;
+    index: number;
   }) => {
     const RADIAN = Math.PI / 180;
     const radius = outerRadius;
@@ -46,16 +54,18 @@ const EventGenresChart = ({ events }) => {
     ) : null;
   };
 
-  const renderLegend = props => {
+  const renderLegend = (props: {
+    payload?: Array<{ color: string; value: string }>;
+  }) => {
     const { payload } = props;
 
     return (
       <ul className="genres-pie-chart__legend">
-        {payload.map((entry, index) => (
+        {payload?.map((entry, index) => (
           <li
             className="genres-pie-chart__legend-item"
             key={`item-${index}`}
-            style={{ '--icon-color': entry.color }}
+            style={{ '--icon-color': entry.color } as React.CSSProperties}
           >
             {entry.value}
           </li>
@@ -85,7 +95,6 @@ const EventGenresChart = ({ events }) => {
           ))}
         </Pie>
         <Legend content={renderLegend} />
-        {/* <Legend verticalAlign="bottom" /> */}
       </PieChart>
     </ResponsiveContainer>
   );
