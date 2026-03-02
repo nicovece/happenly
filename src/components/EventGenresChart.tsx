@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { CSSProperties, useState, useEffect } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from 'recharts';
+import type { Props as LegendProps } from 'recharts/types/component/DefaultLegendContent';
+import { EventGenresChartProps, GenreChartData } from '../types';
 
 const colors = ['#807ce4', '#9A96EA', '#B2B0EF', '#CCCBF4', '#E5E5FA'];
 
-const EventGenresChart = ({ events }) => {
-  const [data, setData] = useState([]);
+const EventGenresChart = ({ events }: EventGenresChartProps) => {
+  const [data, setData] = useState<GenreChartData[]>([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
-  const getData = () => {
+  const getData = (): GenreChartData[] => {
     const data = genres.map(genre => {
       const filteredEvents = events.filter(event =>
         event.summary.includes(genre)
@@ -28,6 +30,13 @@ const EventGenresChart = ({ events }) => {
     outerRadius,
     percent,
     index,
+  }: {
+    cx: number;
+    cy: number;
+    midAngle: number;
+    outerRadius: number;
+    percent: number;
+    index: number;
   }) => {
     const RADIAN = Math.PI / 180;
     const radius = outerRadius;
@@ -46,16 +55,16 @@ const EventGenresChart = ({ events }) => {
     ) : null;
   };
 
-  const renderLegend = props => {
+  const renderLegend = (props: LegendProps) => {
     const { payload } = props;
 
     return (
       <ul className="genres-pie-chart__legend">
-        {payload.map((entry, index) => (
+        {payload?.map((entry, index) => (
           <li
             className="genres-pie-chart__legend-item"
             key={`item-${index}`}
-            style={{ '--icon-color': entry.color }}
+            style={{ '--icon-color': entry.color ?? '' } as CSSProperties}
           >
             {entry.value}
           </li>
@@ -75,7 +84,7 @@ const EventGenresChart = ({ events }) => {
           label={renderCustomizedLabel}
           outerRadius={130}
         >
-          {data.map((entry, index) => (
+          {data.map((_entry, index) => (
             <Cell
               key={`cell-${index}`}
               fill={colors[index % colors.length]}
@@ -85,7 +94,6 @@ const EventGenresChart = ({ events }) => {
           ))}
         </Pie>
         <Legend content={renderLegend} />
-        {/* <Legend verticalAlign="bottom" /> */}
       </PieChart>
     </ResponsiveContainer>
   );

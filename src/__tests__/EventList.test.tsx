@@ -1,11 +1,10 @@
-import React from 'react';
-import { render, waitFor, within } from '@testing-library/react';
+import { render, waitFor, within, RenderResult } from '@testing-library/react';
 import EventList from '../components/EventList';
 import { getEvents } from '../api';
 import App from '../App';
 
 describe('<EventList /> component', () => {
-  let EventListComponent;
+  let EventListComponent: RenderResult;
   beforeEach(() => {
     EventListComponent = render(<EventList />);
   });
@@ -28,8 +27,8 @@ describe('<EventList /> component', () => {
 describe('<EventList /> integration', () => {
   test('renders a list of 32 events when the app is mounted and rendered', async () => {
     const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
-    const EventListDOM = AppDOM.querySelector('#event-list');
+    const AppDOM = AppComponent.container.firstChild as HTMLElement;
+    const EventListDOM = AppDOM.querySelector('#event-list') as HTMLElement;
     await waitFor(() => {
       const EventListItems = within(EventListDOM).queryAllByRole('listitem');
       expect(EventListItems.length).toBe(32);

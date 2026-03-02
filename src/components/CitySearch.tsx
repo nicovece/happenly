@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { InfoAlert } from './Alert';
+import { CitySearchProps } from '../types';
 
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch: FC<CitySearchProps> = ({
+  allLocations,
+  setCurrentCity,
+}) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [infoAlert, setInfoAlert] = useState('');
-  const handleInputChanged = event => {
+
+  const handleInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const filteredLocations = allLocations
       ? allLocations.filter(location => {
@@ -16,7 +21,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     setQuery(value);
     setSuggestions(filteredLocations);
 
-    let infoText;
+    let infoText: string;
     if (filteredLocations.length === 0) {
       infoText =
         'We can not find the city you are looking for. Please try another city';
@@ -26,8 +31,8 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     setInfoAlert(infoText);
   };
 
-  const handleItemClicked = event => {
-    const value = event.target.textContent;
+  const handleItemClicked = (event: MouseEvent<HTMLLIElement>) => {
+    const value = (event.target as HTMLElement).textContent ?? '';
     setQuery(value);
     setShowSuggestions(false);
     setCurrentCity(value);
@@ -41,7 +46,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
   return (
     <div id="city-search">
       <h1 className="page__title">
-        <strong className="accent">Happenly</strong>. Discover what’s happening!
+        <strong className="accent">Happenly</strong>. Discover what's happening!
       </h1>
       <label className="visually-hidden" htmlFor="city">
         Search for a city

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import EventList from './components/EventList';
@@ -9,15 +8,14 @@ import { WarningAlert } from './components/Alert';
 import CityEventsChart from './components/CityEventsChart';
 import EventGenresChart from './components/EventGenresChart';
 import { getEvents, extractLocations } from './api';
+import { CalendarEvent } from './types';
 import './App.scss';
 
 function App() {
-  const [allLocations, setAllLocations] = useState([]);
+  const [allLocations, setAllLocations] = useState<string[]>([]);
   const [currentNOE, setCurrentNOE] = useState(32);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
-  // const [infoAlert, setInfoAlert] = useState('');
-  // const [errorAlert, setErrorAlert] = useState('');
   const [warningAlert, setWarningAlert] = useState('');
 
   useEffect(() => {
@@ -43,20 +41,16 @@ function App() {
     <div className="App">
       <Header />
       <div className="alerts-container">
-        {/* {infoAlert.length ? <InfoAlert text={infoAlert} /> : null} */}
-        {/* {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null} */}
         {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
       <div className="search-container">
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
-          //setInfoAlert={setInfoAlert}
         />
         <NumberOfEvents
           currentNOE={currentNOE}
           setCurrentNOE={setCurrentNOE}
-          // setErrorAlert={setErrorAlert}
         />
       </div>
       <div className="charts-container">

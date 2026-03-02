@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import {
   ScatterChart,
   Scatter,
@@ -10,16 +9,20 @@ import {
   ResponsiveContainer,
   ZAxis,
 } from 'recharts';
+import { CityEventsChartProps, CityChartData } from '../types';
 import './Charts.scss';
 
-const CityEventsChart = ({ allLocations, events }) => {
-  const [data, setData] = useState([]);
+const CityEventsChart: FC<CityEventsChartProps> = ({
+  allLocations,
+  events,
+}) => {
+  const [data, setData] = useState<CityChartData[]>([]);
 
   useEffect(() => {
     setData(getData());
   }, [`${events}`]);
 
-  const getData = () => {
+  const getData = (): CityChartData[] => {
     const data = allLocations.map(location => {
       const count = events.filter(event => event.location === location).length;
       const city = location.split(/, | - /)[0];
@@ -27,6 +30,7 @@ const CityEventsChart = ({ allLocations, events }) => {
     });
     return data;
   };
+
   return (
     <ResponsiveContainer width="99%" height={400}>
       <ScatterChart
@@ -38,12 +42,7 @@ const CityEventsChart = ({ allLocations, events }) => {
           left: -30,
         }}
       >
-        <CartesianGrid
-          // fill="#33325b"
-          // fillOpacity={0.3}
-          strokeDasharray="4 4"
-          opacity={0.5}
-        />
+        <CartesianGrid strokeDasharray="4 4" opacity={0.5} />
         <XAxis
           type="category"
           dataKey="city"

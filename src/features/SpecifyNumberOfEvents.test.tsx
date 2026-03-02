@@ -1,6 +1,5 @@
-import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, RenderResult } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 
@@ -12,7 +11,7 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    let AppComponent: RenderResult;
     given('the main page is loaded', async () => {
       AppComponent = render(<App />);
     });
@@ -38,7 +37,7 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    let AppComponent: RenderResult;
     given('the main page is loaded', async () => {
       AppComponent = render(<App />);
     });

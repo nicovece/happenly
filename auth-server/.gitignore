@@ -6,5 +6,7 @@ jspm_packages
 # Serverless directories
 .serverless
 
+# TypeScript build output
+.build
 
 config.json

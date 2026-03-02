@@ -1,6 +1,5 @@
-import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, RenderResult } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 
@@ -12,7 +11,7 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    let AppComponent: RenderResult;
     given('the app is launched', async () => {
       AppComponent = render(<App />);
     });
@@ -39,7 +38,7 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    let AppComponent: RenderResult;
     given('the main page is loaded', async () => {
       AppComponent = render(<App />);
     });
@@ -62,7 +61,7 @@ defineFeature(feature, test => {
     when('the user clicks on an event show details button', async () => {
       const showDetailsButton = AppComponent.container.querySelector(
         '.event.closed .details-btn'
-      );
+      ) as HTMLElement;
       userEvent.click(showDetailsButton);
     });
 
@@ -81,7 +80,7 @@ defineFeature(feature, test => {
     when,
     then,
   }) => {
-    let AppComponent;
+    let AppComponent: RenderResult;
     given('the main page is loaded', async () => {
       AppComponent = render(<App />);
     });
@@ -94,13 +93,11 @@ defineFeature(feature, test => {
     });
 
     and('the event details box is shown', async () => {
-      // First, click the show details button
       const showDetailsButton = AppComponent.container.querySelector(
         '.event.closed .details-btn'
-      );
+      ) as HTMLElement;
       userEvent.click(showDetailsButton);
 
-      // Now, wait for the details to appear
       await waitFor(() => {
         const eventDetails =
           AppComponent.container.querySelector('.event .details');
@@ -111,7 +108,7 @@ defineFeature(feature, test => {
     when('the user clicks on an event hide details button', () => {
       const hideDetailsButton = AppComponent.container.querySelector(
         '.event.open .details-btn'
-      );
+      ) as HTMLElement;
       userEvent.click(hideDetailsButton);
     });
 
