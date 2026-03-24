@@ -49,8 +49,12 @@ export const getEvents = async (): Promise<CalendarEvent[]> => {
       '/' +
       token;
     const response = await fetch(url);
+    if (!response.ok) {
+      const cachedEvents = localStorage.getItem('lastEvents');
+      return cachedEvents ? JSON.parse(cachedEvents) : [];
+    }
     const result = await response.json();
-    if (result) {
+    if (result?.events) {
       localStorage.setItem('lastEvents', JSON.stringify(result.events));
       return result.events;
     }

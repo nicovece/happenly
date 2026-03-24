@@ -51,10 +51,11 @@ export const getAccessToken = async (
       body: JSON.stringify(tokens),
     };
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     return {
       statusCode: 500,
       headers: corsHeaders,
-      body: JSON.stringify(error),
+      body: JSON.stringify({ error: message }),
     };
   }
 };
@@ -82,10 +83,11 @@ export const getCalendarEvents = async (
       body: JSON.stringify({ events: response.data.items }),
     };
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     return {
       statusCode: 500,
       headers: corsHeaders,
-      body: JSON.stringify(error),
+      body: JSON.stringify({ error: message }),
     };
   }
 };
