@@ -28,10 +28,13 @@ describe('<EventList /> integration', () => {
   test('renders a list of 32 events when the app is mounted and rendered', async () => {
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild as HTMLElement;
-    const EventListDOM = AppDOM.querySelector('#event-list') as HTMLElement;
-    await waitFor(() => {
-      const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-      expect(EventListItems.length).toBe(32);
-    });
+    await waitFor(
+      () => {
+        const EventListDOM = AppDOM.querySelector('#event-list') as HTMLElement;
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      },
+      { timeout: 5000 }
+    );
   });
 });

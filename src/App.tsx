@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import Footer from './components/Footer';
 import { WarningAlert } from './components/Alert';
-import CityEventsChart from './components/CityEventsChart';
-import EventGenresChart from './components/EventGenresChart';
+const CityEventsChart = lazy(() => import('./components/CityEventsChart'));
+const EventGenresChart = lazy(() => import('./components/EventGenresChart'));
 import { getEvents, extractLocations } from './api';
 import { CalendarEvent } from './types';
 import './App.scss';
@@ -51,8 +51,10 @@ function App() {
         <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} />
       </div>
       <div className="charts-container">
-        <EventGenresChart events={events} />
-        <CityEventsChart allLocations={allLocations} events={events} />
+        <Suspense fallback={null}>
+          <EventGenresChart events={events} />
+          <CityEventsChart allLocations={allLocations} events={events} />
+        </Suspense>
       </div>
       <div className="events-container">
         <EventList events={events} />
