@@ -8,9 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest",
+    "test": "jest --testPathIgnorePatterns=src/__tests__/EndToEnd\\.test\\.ts",
     "test:e2e": "node --experimental-vm-modules node_modules/.bin/jest src/__tests__/EndToEnd.test.ts",
-    "test:noe2e": "jest --testPathIgnorePatterns=src/__tests__/EndToEnd\\.test\\.ts",
     "test:watch": "jest --watch --coverage",
     "test:watchall": "jest --watchAll --coverage"
   },
