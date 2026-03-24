@@ -25,7 +25,7 @@ function App() {
       setWarningAlert('No internet connection. Events are cached.');
     }
     fetchData();
-  }, [currentCity, currentNOE]);
+  }, [currentCity, currentNOE]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     const allEvents = await getEvents();
@@ -48,10 +48,7 @@ function App() {
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
         />
-        <NumberOfEvents
-          currentNOE={currentNOE}
-          setCurrentNOE={setCurrentNOE}
-        />
+        <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} />
       </div>
       <div className="charts-container">
         <EventGenresChart events={events} />

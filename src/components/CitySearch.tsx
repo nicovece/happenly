@@ -2,10 +2,7 @@ import { FC, useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { InfoAlert } from './Alert';
 import { CitySearchProps } from '../types';
 
-const CitySearch: FC<CitySearchProps> = ({
-  allLocations,
-  setCurrentCity,
-}) => {
+const CitySearch: FC<CitySearchProps> = ({ allLocations, setCurrentCity }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -41,7 +38,7 @@ const CitySearch: FC<CitySearchProps> = ({
 
   useEffect(() => {
     setSuggestions(allLocations || []);
-  }, [`${allLocations}`]);
+  }, [allLocations]);
 
   return (
     <div id="city-search">

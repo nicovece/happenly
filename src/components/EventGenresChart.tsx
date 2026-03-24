@@ -9,19 +9,15 @@ const EventGenresChart = ({ events }: EventGenresChartProps) => {
   const [data, setData] = useState<GenreChartData[]>([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
-  const getData = (): GenreChartData[] => {
-    const data = genres.map(genre => {
+  useEffect(() => {
+    const chartData = genres.map(genre => {
       const filteredEvents = events.filter(event =>
         event.summary.includes(genre)
       );
       return { name: genre, value: filteredEvents.length };
     });
-    return data;
-  };
-
-  useEffect(() => {
-    setData(getData());
-  }, [`${events}`]);
+    setData(chartData);
+  }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const renderCustomizedLabel = ({
     cx,

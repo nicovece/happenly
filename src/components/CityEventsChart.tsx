@@ -19,17 +19,13 @@ const CityEventsChart: FC<CityEventsChartProps> = ({
   const [data, setData] = useState<CityChartData[]>([]);
 
   useEffect(() => {
-    setData(getData());
-  }, [`${events}`]);
-
-  const getData = (): CityChartData[] => {
-    const data = allLocations.map(location => {
+    const chartData = allLocations.map(location => {
       const count = events.filter(event => event.location === location).length;
       const city = location.split(/, | - /)[0];
       return { city, count };
     });
-    return data;
-  };
+    setData(chartData);
+  }, [allLocations, events]);
 
   return (
     <ResponsiveContainer width="99%" height={400}>

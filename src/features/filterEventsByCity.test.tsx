@@ -5,14 +5,14 @@ import App from '../App';
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
-  test("When user hasn\u2019t searched for a city, show upcoming events from all cities", ({
+  test('When user hasn\u2019t searched for a city, show upcoming events from all cities', ({
     given,
     when,
     then,
   }) => {
     let AppComponent: RenderResult;
 
-    given("user hasn\u2019t searched for any city", () => {});
+    given('user hasn\u2019t searched for any city', () => {});
 
     when('the user opens the app', () => {
       AppComponent = render(<App />);
@@ -39,7 +39,7 @@ defineFeature(feature, test => {
     when('user starts typing in the city textbox', () => {});
 
     then(
-      "the user should receive a list of cities (suggestions) that match what they\u2019ve typed",
+      'the user should receive a list of cities (suggestions) that match what they\u2019ve typed',
       () => {}
     );
   });

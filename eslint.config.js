@@ -32,7 +32,8 @@ export default [
       ...reactHooks.configs.recommended.rules,
       ...prettierConfig.rules,
       'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_' }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
@@ -41,7 +42,7 @@ export default [
   },
   // Add specific configuration for test files
   {
-    files: ['**/__tests__/**/*.{js,jsx,ts,tsx}', '**/*.test.{js,jsx,ts,tsx}'],
+    files: ['**/__tests__/**/*.{js,jsx,ts,tsx}', '**/*.test.{js,jsx,ts,tsx}', '**/setupTests.{js,ts}'],
     languageOptions: {
       globals: {
         ...globals.browser,
