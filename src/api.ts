@@ -31,9 +31,7 @@ const removeQuery = (): void => {
 };
 
 export const getEvents = async (): Promise<CalendarEvent[]> => {
-  if (window.location.href.startsWith('http://localhost')) {
-    return mockData;
-  }
+  return mockData;
 
   if (!navigator.onLine) {
     const events = localStorage.getItem('lastEvents');
