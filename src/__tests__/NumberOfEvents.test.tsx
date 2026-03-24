@@ -4,9 +4,27 @@ import {
   within,
   waitFor,
   fireEvent,
+  act,
 } from '@testing-library/react';
 import NumberOfEvents from '../components/NumberOfEvents';
 import App from '../App';
+
+async function renderApp() {
+  let result: ReturnType<typeof render>;
+  await act(async () => {
+    result = render(<App />);
+  });
+  const AppDOM = result!.container.firstChild as HTMLElement;
+  await waitFor(
+    () => {
+      expect(
+        AppDOM.querySelector('.charts-container')?.children.length
+      ).toBeGreaterThan(0);
+    },
+    { timeout: 5000 }
+  );
+  return AppDOM;
+}
 
 describe('<NumberOfEvents /> component', () => {
   test('contains a number input element', () => {
@@ -51,8 +69,7 @@ describe('<NumberOfEvents /> component', () => {
 
 describe('<NumberOfEvents /> integration', () => {
   test('renders default number of events (32) when app loads', async () => {
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild as HTMLElement;
+    const AppDOM = await renderApp();
 
     await waitFor(() => {
       const EventListDOM = AppDOM.querySelector('#event-list') as HTMLElement;
@@ -62,8 +79,7 @@ describe('<NumberOfEvents /> integration', () => {
   });
 
   test('updates number of events when user changes the input value', async () => {
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild as HTMLElement;
+    const AppDOM = await renderApp();
 
     const NumberOfEventsDOM = AppDOM.querySelector(
       '#number__of__events'
@@ -83,8 +99,7 @@ describe('<NumberOfEvents /> integration', () => {
   });
 
   test('displays all available events when user sets a large number', async () => {
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild as HTMLElement;
+    const AppDOM = await renderApp();
 
     const NumberOfEventsDOM = AppDOM.querySelector(
       '#number__of__events'
