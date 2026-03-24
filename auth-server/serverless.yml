@@ -12,6 +12,9 @@ provider:
     CLIENT_ID: ${file(config.json):CLIENT_ID}
     CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
     CALENDAR_ID: ${file(config.json):CALENDAR_ID}
+    PUBLIC_CALENDAR_ID: ${file(config.json):PUBLIC_CALENDAR_ID}
+    SERVICE_ACCOUNT_EMAIL: ${file(config.json):SERVICE_ACCOUNT_EMAIL}
+    SERVICE_ACCOUNT_PRIVATE_KEY: ${file(config.json):SERVICE_ACCOUNT_PRIVATE_KEY}
 
 functions:
   getAuthURL:
@@ -31,4 +34,10 @@ functions:
     events:
       - http:
           path: api/get-events/{access_token}
+          method: get
+  getPublicEvents:
+    handler: handler.getPublicEvents
+    events:
+      - http:
+          path: api/get-public-events
           method: get

@@ -22,5 +22,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# Service account keys
+service-account-key.json
+
 # Project planning docs
 .prd/
+
+# Local AI assistant settings
+.claude/

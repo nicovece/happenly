@@ -5,7 +5,14 @@ const SCOPES = [
   'https://www.googleapis.com/auth/calendar.events.public.readonly',
 ];
 
-const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
+const {
+  CLIENT_SECRET,
+  CLIENT_ID,
+  CALENDAR_ID,
+  PUBLIC_CALENDAR_ID,
+  SERVICE_ACCOUNT_EMAIL,
+  SERVICE_ACCOUNT_PRIVATE_KEY,
+} = process.env;
 
 const redirect_uris = [
   'https://itshappenly.vercel.app/',
@@ -72,6 +79,39 @@ export const getCalendarEvents = async (
     const response = await calendar.events.list({
       calendarId: CALENDAR_ID,
       auth: oAuth2Client,
+      timeMin: new Date().toISOString(),
+      singleEvents: true,
+      orderBy: 'startTime',
+    });
+
+    return {
+      statusCode: 200,
+      headers: corsHeaders,
+      body: JSON.stringify({ events: response.data.items }),
+    };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return {
+      statusCode: 500,
+      headers: corsHeaders,
+      body: JSON.stringify({ error: message }),
+    };
+  }
+};
+
+export const getPublicEvents = async (): Promise<APIGatewayProxyResult> => {
+  const serviceAuth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: SERVICE_ACCOUNT_EMAIL,
+      private_key: SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    },
+    scopes: ['https://www.googleapis.com/auth/calendar.events.public.readonly'],
+  });
+
+  try {
+    const response = await calendar.events.list({
+      calendarId: PUBLIC_CALENDAR_ID,
+      auth: serviceAuth,
       timeMin: new Date().toISOString(),
       singleEvents: true,
       orderBy: 'startTime',
