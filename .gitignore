@@ -10,6 +10,10 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Test/build output
+coverage
+.vite
 /auth-server/config.js
 # Editor directories and files
 .vscode/*

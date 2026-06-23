@@ -113,7 +113,9 @@ function waitForAuthCode(): Promise<string> {
 
       if (code) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end('<h1>Authorization successful!</h1><p>You can close this tab.</p>');
+        res.end(
+          '<h1>Authorization successful!</h1><p>You can close this tab.</p>'
+        );
         server.close();
         resolve(code);
       }
@@ -180,7 +182,9 @@ async function main() {
       );
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`  [${i + 1}/${totalEvents}] Failed: "${event.summary}" — ${message}`);
+      console.error(
+        `  [${i + 1}/${totalEvents}] Failed: "${event.summary}" — ${message}`
+      );
     }
   }
 

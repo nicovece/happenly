@@ -11,6 +11,12 @@ const isLocalhost = Boolean(
   )
 );
 
+function logDev(...args: unknown[]): void {
+  if (import.meta.env.DEV) {
+    console.log(...args);
+  }
+}
+
 export function register(config?: SWConfig): void {
   if (import.meta.env.PROD && 'serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -20,7 +26,7 @@ export function register(config?: SWConfig): void {
         checkValidServiceWorker(swUrl, config);
 
         navigator.serviceWorker.ready.then(() => {
-          console.log(
+          logDev(
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://cra.link/PWA'
           );
@@ -44,7 +50,7 @@ function registerValidSW(swUrl: string, config?: SWConfig): void {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              console.log(
+              logDev(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'
               );
@@ -53,7 +59,7 @@ function registerValidSW(swUrl: string, config?: SWConfig): void {
                 config.onUpdate(registration);
               }
             } else {
-              console.log('Content is cached for offline use.');
+              logDev('Content is cached for offline use.');
 
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
@@ -88,9 +94,7 @@ function checkValidServiceWorker(swUrl: string, config?: SWConfig): void {
       }
     })
     .catch(() => {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
+      logDev('No internet connection found. App is running in offline mode.');
     });
 }
 
