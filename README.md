@@ -66,3 +66,11 @@ Requires AWS credentials and a `config.json` with Google API credentials (see `s
 npm test              # Run all unit/integration tests
 npm run test:e2e      # Run end-to-end tests (requires Puppeteer)
 ```
+
+## Author
+
+**[nicovece](https://github.com/nicovece)** — GitHub
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
